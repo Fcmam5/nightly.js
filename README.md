@@ -1,5 +1,7 @@
 # Nightly.js
 
+A zero dependency Javascript library for enabling dark/night mode in you UI.
+
 ## Usage
 
 1. Include `nightly.js` file
