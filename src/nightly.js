@@ -19,8 +19,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
-var Nightly = function(body = "#313131", texts = "#f5f5f5",
-                       inputs = {color: '#f5f5f5', backgroundColor: '#455A64'},
+var Nightly = function(body = "#282828", texts = "#f5f5f5",
+                       inputs = {color: '#f5f5f5', backgroundColor: "#313131"},
                        links = "#009688", classes, isTwbs3 = false) {
   this.isDark = false;
   this.initialTheme = null;
