@@ -100,5 +100,15 @@ The result was as the following:
 
 ![After using Nightly.js](https://i.imgur.com/uGHUsL0.png "After using Nightly.js")
 
+## TODO
+
+- [ ] Create events (onDark, onLight)
+- [ ] Add state persistence: use localstorage
+- [ ] Continue working on bootstrap `twbs3Darkify()` function (suggestion: [darkly](https://bootswatch.com/3/darkly/) theme)
+- [ ] Add supported browsers section after testing it
+- [ ] Improve [usage](#usage) section
+- [ ] Document and refactor the code
+- [ ] Write tests
+
 ## License
 This project is licensed under the GNU GPL v3.0 License - see the [LICENSE](./LICENSE) file for details
