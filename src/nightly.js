@@ -21,11 +21,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 var Nightly = function(body = "#282828", texts = "#f5f5f5",
                        inputs = {color: '#f5f5f5', backgroundColor: "#313131"},
+                       buttons = {color: "#f5f5f5", backgroundColor: "#757575"},
                        links = "#009688", classes, isTwbs3 = false) {
   this.isDark = false;
   this.initialTheme = null;
   this.linkTags = document.getElementsByTagName('a');
   this.inputTags = document.getElementsByTagName('input');
+  this.buttons = document.getElementsByTagName('button');
 
   /**
   * Apply the dark theme to the DOM elements
@@ -38,7 +40,11 @@ var Nightly = function(body = "#282828", texts = "#f5f5f5",
       links: this.linkTags[0].style.color || '',
       inputs: {
               color: this.inputTags[0].style.color || '',
-              backgroundColor: this.inputTags[0].style.color || ''
+              backgroundColor: this.inputTags[0].style.backgroundColor || ''
+            },
+      buttons: {
+              color: this.buttons[0].style.color || '',
+              backgroundColor: this.buttons[0].style.color || ''
             },
     };
 
@@ -52,6 +58,12 @@ var Nightly = function(body = "#282828", texts = "#f5f5f5",
       inp.style.color = inputs.color;
       inp.style.backgroundColor = inputs.backgroundColor;
     }
+
+    for (btn of this.buttons) {
+      btn.style.color = buttons.color;
+      btn.style.borderColor = buttons.backgroundColor;
+      btn.style.backgroundColor = buttons.backgroundColor;
+    }
   };
   /**
   * Save the initial styles
@@ -64,9 +76,16 @@ var Nightly = function(body = "#282828", texts = "#f5f5f5",
       for (a of this.linkTags) {
         a.style.color = this.initialTheme.links;
       }
+
       for (inp of this.inputTags) {
         inp.style.color = this.initialTheme.inputs.color;
         inp.style.backgroundColor = this.initialTheme.inputs.backgroundColor;
+      }
+
+      for (btn of this.buttons) {
+        btn.style.color = this.initialTheme.buttons.color;
+        btn.style.borderColor = this.initialTheme.buttons.backgroundColor;
+        btn.style.backgroundColor = this.initialTheme.buttons.backgroundColor;
       }
     }
   };

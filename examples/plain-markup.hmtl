@@ -3,16 +3,23 @@
   <head>
     <meta charset="utf-8">
     <title>Nightly.js example 101</title>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
     <style media="screen">
       body {
         padding: 50px;
+      }
+      #btn {
+        height: 50px;
+        width: 150px;
+      }
+      .red-text {
+        color: #D32F2F;
       }
     </style>
 
   </head>
   <body>
-    <h1>Hello, world! <button type="button" name="button" id="btn">Toggle</button></h1>
+    <h1>Hello, world <span class="red-text">!</span> <button type="button" name="button" id="btn">Toggle</button></h1>
     <p>Please, <a href="#">Click here</a></p>
 
     <div id="form-container">
