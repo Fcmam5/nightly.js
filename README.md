@@ -3,7 +3,54 @@
 ## Usage
 
 1. Include `nightly.js` file
-2. In you main Javascript file initiate the object then call the `darkify()` or the `toggle()` function
+2. In you main Javascript file initiate the object
+
+```javascript
+var Nightly = new Nightly();
+```
+
+And you can costumize your parameters
+
+```javascript
+var Nightly = new Nightly({
+          body: "backgorund color", // Default: #282828
+          texts: "texts color", // Default: #f5f5f5
+          inputs: {
+            color: "text color inside inputs", // Default: #f5f5f5
+            backgroundColor: "background color" // Default #313131
+          },
+          buttons: {
+            color: "button's text color", // Default: #f5f5f5
+            backgroundColor: "button's backgournd color" // #757575
+          },
+          links: "links color (normal state)", // Default: #009688
+          isTwbs3: 'boolean: are you working with Bootstrap3 ?', //Default false
+          classes: [{ // Classes to apply when enabling the dark mode on certain elements
+            light: 'price-tag-light',
+            dark: 'price-tag-dark'
+          }],
+        },
+        nightCallback = function() {
+          console.log('Good morning');
+        },
+        lightifyCallback = function() {
+          console.log('Good evening');
+        }
+      );
+```
+
+3. Call the `darkify()` or the `toggle()` function
+
+```javascript
+// To enable the dark mode
+Nightly.darkify();
+
+// To disable the dark mode
+Nightly.lightify();
+
+// Toggle between dark and light mode
+Nightly.toggle();
+```
 
 ### Example
 
