@@ -19,149 +19,147 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
-(function() {
-  /**
-    * Default values for the dark theme
-    */
-  var defaults = {
-    nightMode: {
-              body: "#282828",
-              texts: "#f5f5f5",
-              inputs: {color: '#f5f5f5', backgroundColor: "#313131"},
-              buttons: {color: "#f5f5f5", backgroundColor: "#757575"},
-              links: "#009688",
-              classes: [],
-              isTwbs3: false
-            },
-    nightCallback: function(){ },
-    dayCallback: function(){ },
-  }
+/**
+  * Default values for the dark theme
+  */
+var defaults = {
+  nightMode: {
+            body: "#282828",
+            texts: "#f5f5f5",
+            inputs: {color: '#f5f5f5', backgroundColor: "#313131"},
+            buttons: {color: "#f5f5f5", backgroundColor: "#757575"},
+            links: "#009688",
+            classes: [],
+            isTwbs3: false
+          },
+  nightCallback: function(){ },
+  dayCallback: function(){ },
+}
+
+/**
+  *  Create the night mode with the settings passed in the contructor
+  *   when not passing any parameters it Nightly will use the default values
+  * @param nightMode - Object - The basic configuration of your night mode colors
+  * @param nightCallback - function - The callback after establishing the night mode
+  * @param dayCallback - function - The callback after disabling the night mode
+  */
+var Nightly = function(nightMode, nightCallback, dayCallback) {
+  this.isDark = false;
+  this.initialTheme = null;
+  this.nightMode = !nightMode ? defaults.nightMode : {
+    body: nightMode.body || defaults.nightMode.body,
+    texts: nightMode.texts || defaults.nightMode.texts,
+    inputs: {
+      color: nightMode.inputs ? nightMode.inputs.color : defaults.nightMode.inputs.color,
+      backgroundColor: nightMode.inputs ? nightMode.inputs.backgroundColor :
+                                    defaults.nightMode.inputs.backgroundColor
+    },
+    buttons: {
+      color: nightMode.buttons ? nightMode.buttons.color :
+                              defaults.nightMode.buttons.color,
+      backgroundColor: nightMode.buttons ? nightMode.buttons.backgroundColor :
+                        defaults.nightMode.buttons.backgroundColor
+    },
+    links: nightMode.links || defaults.nightMode.links,
+    classes: nightMode.classes || defaults.nightMode.classes,
+    isTwbs3: nightMode.isTwbs3 || defaults.nightMode.isTwbs3,
+  };
+  this.darkifyCallback = nightCallback || defaults.nightCallback;
+  this.lightifyCallback = dayCallback || defaults.dayCallback;
+  this.linkTags = document.getElementsByTagName('a');
+  this.inputTags = document.getElementsByTagName('input');
+  this.buttons = document.getElementsByTagName('button');
 
   /**
-    *  Create the night mode with the settings passed in the contructor
-    *   when not passing any parameters it Nightly will use the default values
-    * @param nightMode - Object - The basic configuration of your night mode colors
-    * @param nightCallback - function - The callback after establishing the night mode
-    * @param dayCallback - function - The callback after disabling the night mode
-    */
-  var Nightly = function(nightMode, nightCallback, dayCallback) {
-    this.isDark = false;
-    this.initialTheme = null;
-    this.nightMode = {
-      body: nightMode.body || defaults.nightMode.body,
-      texts: nightMode.texts || defaults.nightMode.texts,
+  * @public
+  * Apply the dark theme to the DOM elements
+  */
+  this.darkify = function() {
+    this.isDark = true;
+    this.initialTheme = {
+      body: document.body.style.backgroundColor,
+      texts: document.body.style.color,
+      links: this.linkTags[0].style.color || '',
       inputs: {
-        color: nightMode.inputs ? nightMode.inputs.color : defaults.nightMode.inputs.color,
-        backgroundColor: nightMode.inputs ? nightMode.inputs.backgroundColor :
-                                      defaults.nightMode.inputs.backgroundColor
-      },
+              color: this.inputTags[0].style.color || '',
+              backgroundColor: this.inputTags[0].style.backgroundColor || ''
+            },
       buttons: {
-        color: nightMode.buttons ? nightMode.buttons.color :
-                                defaults.nightMode.buttons.color,
-        backgroundColor: nightMode.buttons ? nightMode.buttons.backgroundColor :
-                          defaults.nightMode.buttons.backgroundColor
-      },
-      links: nightMode.links || defaults.nightMode.links,
-      classes: nightMode.classes || defaults.nightMode.classes,
-      isTwbs3: nightMode.isTwbs3 || defaults.nightMode.isTwbs3,
+              color: this.buttons[0].style.color || '',
+              backgroundColor: this.buttons[0].style.color || ''
+            },
     };
-    this.darkifyCallback = nightCallback || defaults.nightCallback;
-    this.lightifyCallback = dayCallback || defaults.dayCallback;
-    this.linkTags = document.getElementsByTagName('a');
-    this.inputTags = document.getElementsByTagName('input');
-    this.buttons = document.getElementsByTagName('button');
 
-    /**
-    * @public
-    * Apply the dark theme to the DOM elements
-    */
-    this.darkify = function() {
-      this.isDark = true;
-      this.initialTheme = {
-        body: document.body.style.backgroundColor,
-        texts: document.body.style.color,
-        links: this.linkTags[0].style.color || '',
-        inputs: {
-                color: this.inputTags[0].style.color || '',
-                backgroundColor: this.inputTags[0].style.backgroundColor || ''
-              },
-        buttons: {
-                color: this.buttons[0].style.color || '',
-                backgroundColor: this.buttons[0].style.color || ''
-              },
-      };
+    document.body.style.backgroundColor = this.nightMode.body;
+    document.body.style.color = this.nightMode.texts;
+    for (a of this.linkTags) {
+      a.style.color = this.nightMode.links;
+    }
 
-      document.body.style.backgroundColor = this.nightMode.body;
-      document.body.style.color = this.nightMode.texts;
+    for (inp of this.inputTags) {
+      inp.style.color = this.nightMode.inputs.color;
+      inp.style.backgroundColor = this.nightMode.inputs.backgroundColor;
+    }
+
+    for (btn of this.buttons) {
+      btn.style.color = this.nightMode.buttons.color;
+      btn.style.borderColor = this.nightMode.buttons.backgroundColor;
+      btn.style.backgroundColor = this.nightMode.buttons.backgroundColor;
+    }
+    this.darkifyCallback();
+  };
+  /**
+  * @public
+  * Save the initial styles
+  */
+  this.lightify = function() {
+    if (this.initialTheme) {
+      this.isDark = false;
+      document.body.style.backgroundColor = this.initialTheme.body;
+      document.body.style.color = this.initialTheme.texts;
       for (a of this.linkTags) {
-        a.style.color = this.nightMode.links;
+        a.style.color = this.initialTheme.links;
       }
 
       for (inp of this.inputTags) {
-        inp.style.color = this.nightMode.inputs.color;
-        inp.style.backgroundColor = this.nightMode.inputs.backgroundColor;
+        inp.style.color = this.initialTheme.inputs.color;
+        inp.style.backgroundColor = this.initialTheme.inputs.backgroundColor;
       }
 
       for (btn of this.buttons) {
-        btn.style.color = this.nightMode.buttons.color;
-        btn.style.borderColor = this.nightMode.buttons.backgroundColor;
-        btn.style.backgroundColor = this.nightMode.buttons.backgroundColor;
+        btn.style.color = this.initialTheme.buttons.color;
+        btn.style.borderColor = this.initialTheme.buttons.backgroundColor;
+        btn.style.backgroundColor = this.initialTheme.buttons.backgroundColor;
       }
-      this.darkifyCallback();
-    };
-    /**
-    * @public
-    * Save the initial styles
-    */
-    this.lightify = function() {
-      if (this.initialTheme) {
-        this.isDark = false;
-        document.body.style.backgroundColor = this.initialTheme.body;
-        document.body.style.color = this.initialTheme.texts;
-        for (a of this.linkTags) {
-          a.style.color = this.initialTheme.links;
-        }
-
-        for (inp of this.inputTags) {
-          inp.style.color = this.initialTheme.inputs.color;
-          inp.style.backgroundColor = this.initialTheme.inputs.backgroundColor;
-        }
-
-        for (btn of this.buttons) {
-          btn.style.color = this.initialTheme.buttons.color;
-          btn.style.borderColor = this.initialTheme.buttons.backgroundColor;
-          btn.style.backgroundColor = this.initialTheme.buttons.backgroundColor;
-        }
-      }
-      this.lightifyCallback();
-    };
-    /**
-    * @public
-    * Toggle darkify and lightify
-    */
-    this.toggle = function() {
-      if (this.isDark) {
-        this.lightify();
-      } else {
-        this.darkify();
-      }
-    };
-    /**
-    * Twitter Bootstrap 3 configuration
-    */
-    this.twbs3Darkify = function() {
-      // TODO
-      if (this.nightMode.isTwbs3) {
-        /**
-        * Get all navbars and add 'navbar-inverse'
-        * https://getbootstrap.com/docs/3.3/components/#navbar-inverted
-        */
-        var navbars = document.getElementsByClassName('navbar');
-        for(nv of navbars) {
-          nv.className += " navbar-inverse";
-        }
-
-      }
-    };
+    }
+    this.lightifyCallback();
   };
-}());
+  /**
+  * @public
+  * Toggle darkify and lightify
+  */
+  this.toggle = function() {
+    if (this.isDark) {
+      this.lightify();
+    } else {
+      this.darkify();
+    }
+  };
+  /**
+  * Twitter Bootstrap 3 configuration
+  */
+  this.twbs3Darkify = function() {
+    // TODO
+    if (this.nightMode.isTwbs3) {
+      /**
+      * Get all navbars and add 'navbar-inverse'
+      * https://getbootstrap.com/docs/3.3/components/#navbar-inverted
+      */
+      var navbars = document.getElementsByClassName('navbar');
+      for(nv of navbars) {
+        nv.className += " navbar-inverse";
+      }
+
+    }
+  };
+};
