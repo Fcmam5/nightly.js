@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Nightly.js example 101</title>
+
+    <style media="screen">
+      body {
+        padding: 50px;
+      }
+    </style>
+
+  </head>
+  <body>
+    <h1>Hello, world! <button type="button" name="button" id="btn">Toggle</button></h1>
+    <p>Please, <a href="#">Click here</a></p>
+
+    <div id="form-container">
+      <form>
+        <label for="name">Your name</label>
+        <input type="text" name="name" value="Hello world" placeholder="name">
+      </form>
+
+    </div>
+    <script src="../src/nightly.js" charset="utf-8"></script>
+    <script type="text/javascript">
+      var Nightly = new Nightly();
+      document.getElementById("btn").addEventListener("click", function(){
+        Nightly.toggle();
+      });
+
+    </script>
+  </body>
+</html>
