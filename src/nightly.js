@@ -19,12 +19,43 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
-var Nightly = function(body = "#282828", texts = "#f5f5f5",
-                       inputs = {color: '#f5f5f5', backgroundColor: "#313131"},
-                       buttons = {color: "#f5f5f5", backgroundColor: "#757575"},
-                       links = "#009688", classes, isTwbs3 = false) {
+var defaults = {
+  nightMode: {
+            body: "#282828",
+            texts: "#f5f5f5",
+            inputs: {color: '#f5f5f5', backgroundColor: "#313131"},
+            buttons: {color: "#f5f5f5", backgroundColor: "#757575"},
+            links: "#009688",
+            classes: '',
+            isTwbs3: false
+          },
+  nightCallback: function(){ },
+  dayCallback: function(){ },
+}
+
+var Nightly = function(nightMode, nightCallback, dayCallback) {
   this.isDark = false;
   this.initialTheme = null;
+  this.nightMode = {
+    body: nightMode.body || defaults.nightMode.body,
+    texts: nightMode.texts || defaults.nightMode.texts,
+    inputs: {
+      color: nightMode.inputs ? nightMode.inputs.color : defaults.nightMode.inputs.color,
+      backgroundColor: nightMode.inputs ? nightMode.inputs.backgroundColor :
+                                    defaults.nightMode.inputs.backgroundColor
+    },
+    buttons: {
+      color: nightMode.buttons ? nightMode.buttons.color :
+                              defaults.nightMode.buttons.color,
+      backgroundColor: nightMode.buttons ? nightMode.buttons.backgroundColor :
+                        defaults.nightMode.buttons.backgroundColor
+    },
+    links: nightMode.links || defaults.nightMode.links,
+    classes: nightMode.classes || defaults.nightMode.classes,
+    isTwbs3: nightMode.isTwbs3 || defaults.nightMode.isTwbs3,
+  };
+  this.darkifyCallback = nightCallback || defaults.nightCallback;
+  this.lightifyCallback = dayCallback || defaults.dayCallback;
   this.linkTags = document.getElementsByTagName('a');
   this.inputTags = document.getElementsByTagName('input');
   this.buttons = document.getElementsByTagName('button');
@@ -48,22 +79,23 @@ var Nightly = function(body = "#282828", texts = "#f5f5f5",
             },
     };
 
-    document.body.style.backgroundColor = body;
-    document.body.style.color = texts;
+    document.body.style.backgroundColor = this.nightMode.body;
+    document.body.style.color = this.nightMode.texts;
     for (a of this.linkTags) {
-      a.style.color = links;
+      a.style.color = this.nightMode.links;
     }
 
     for (inp of this.inputTags) {
-      inp.style.color = inputs.color;
-      inp.style.backgroundColor = inputs.backgroundColor;
+      inp.style.color = this.nightMode.inputs.color;
+      inp.style.backgroundColor = this.nightMode.inputs.backgroundColor;
     }
 
     for (btn of this.buttons) {
-      btn.style.color = buttons.color;
-      btn.style.borderColor = buttons.backgroundColor;
-      btn.style.backgroundColor = buttons.backgroundColor;
+      btn.style.color = this.nightMode.buttons.color;
+      btn.style.borderColor = this.nightMode.buttons.backgroundColor;
+      btn.style.backgroundColor = this.nightMode.buttons.backgroundColor;
     }
+    this.darkifyCallback();
   };
   /**
   * Save the initial styles
@@ -88,6 +120,7 @@ var Nightly = function(body = "#282828", texts = "#f5f5f5",
         btn.style.backgroundColor = this.initialTheme.buttons.backgroundColor;
       }
     }
+    this.lightifyCallback();
   };
   /**
   * Toggle darkify and lightify
@@ -104,7 +137,7 @@ var Nightly = function(body = "#282828", texts = "#f5f5f5",
   */
   this.twbs3Darkify = function() {
     // TODO
-    if (isTwbs3) {
+    if (this.nightMode.isTwbs3) {
       /**
       * Get all navbars and add 'navbar-inverse'
       * https://getbootstrap.com/docs/3.3/components/#navbar-inverted
