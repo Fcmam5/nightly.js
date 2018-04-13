@@ -71,7 +71,7 @@ so you wanted to contribute by adding it to the library.
         }
       }
     ```
-You can review [this commit (HASH)](#) where we covered the `<select>` and `<option>` elements.
+You can review [this commit (develop/350a948)](#) where we covered the `<textarea>` element.
 
 ### Using the night mode for a certain framework
 You can take Twitter Bootstrap 3 as example, we're passing `isTwbs3` argument, if it's true we execute `twbs3Darkify()` were we gonna add styles and classes, feel free to add/edit your preferred web framework, or **feel free to write your plugin for nightly.js**.

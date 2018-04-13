@@ -28,6 +28,7 @@ var defaults = {
             texts: "#f5f5f5",
             inputs: {color: '#f5f5f5', backgroundColor: "#313131"},
             buttons: {color: "#f5f5f5", backgroundColor: "#757575"},
+            textareas: {color: '#f5f5f5', backgroundColor: "#313131"},
             links: "#009688",
             classes: [],
             isTwbs3: false
@@ -60,6 +61,11 @@ var Nightly = function(nightMode, nightCallback, dayCallback) {
       backgroundColor: nightMode.buttons ? nightMode.buttons.backgroundColor :
                         defaults.nightMode.buttons.backgroundColor
     },
+    textareas: {
+      color: nightMode.textareas ? nightMode.textareas.color : defaults.nightMode.textareas.color,
+      backgroundColor: nightMode.textareas ? nightMode.textareas.backgroundColor :
+      defaults.nightMode.textareas.backgroundColor
+    },
     links: nightMode.links || defaults.nightMode.links,
     classes: nightMode.classes || defaults.nightMode.classes,
     isTwbs3: nightMode.isTwbs3 || defaults.nightMode.isTwbs3,
@@ -69,6 +75,7 @@ var Nightly = function(nightMode, nightCallback, dayCallback) {
   this.linkTags = document.getElementsByTagName('a');
   this.inputTags = document.getElementsByTagName('input');
   this.buttons = document.getElementsByTagName('button');
+  this.textareaTags = document.getElementsByTagName('textarea');
 
   /**
   * @public
@@ -89,6 +96,11 @@ var Nightly = function(nightMode, nightCallback, dayCallback) {
               color: this.buttons[0] ? this.buttons[0].style.color : '',
               backgroundColor: this.buttons[0] ? this.buttons[0].style.color : ''
             },
+      textareas: {
+        color: this.textareaTags[0] ? this.textareaTags[0].style.color : '',
+        backgroundColor: this.textareaTags[0] ?
+        this.textareaTags[0].style.backgroundColor : ''
+      },
     };
 
     document.body.style.backgroundColor = this.nightMode.body;
@@ -107,6 +119,13 @@ var Nightly = function(nightMode, nightCallback, dayCallback) {
       btn.style.borderColor = this.nightMode.buttons.backgroundColor;
       btn.style.backgroundColor = this.nightMode.buttons.backgroundColor;
     }
+
+    for (txtarea of this.textareaTags) {
+      txtarea.style.color = this.nightMode.textareas.color;
+      txtarea.style.borderColor = this.nightMode.textareas.color;
+      txtarea.style.backgroundColor = this.nightMode.textareas.backgroundColor;
+    }
+
     this.darkifyCallback();
   };
   /**
@@ -132,6 +151,13 @@ var Nightly = function(nightMode, nightCallback, dayCallback) {
         btn.style.borderColor = this.initialTheme.buttons.backgroundColor;
         btn.style.backgroundColor = this.initialTheme.buttons.backgroundColor;
       }
+
+      for (txtarea of this.textareaTags) {
+        txtarea.style.color = this.initialTheme.textareas.color;
+        txtarea.style.borderColor = this.initialTheme.textareas.backgroundColor;
+        txtarea.style.backgroundColor = this.initialTheme.textareas.backgroundColor;
+      }
+
     }
     this.lightifyCallback();
   };
