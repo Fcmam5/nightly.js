@@ -81,12 +81,13 @@ var Nightly = function(nightMode, nightCallback, dayCallback) {
       texts: document.body.style.color,
       links: this.linkTags[0].style.color || '',
       inputs: {
-              color: this.inputTags[0].style.color || '',
-              backgroundColor: this.inputTags[0].style.backgroundColor || ''
+              color: this.inputTags[0] ? this.inputTags[0].style.color : '',
+              backgroundColor: this.inputTags[0] ?
+                                    this.inputTags[0].style.backgroundColor : ''
             },
       buttons: {
-              color: this.buttons[0].style.color || '',
-              backgroundColor: this.buttons[0].style.color || ''
+              color: this.buttons[0] ? this.buttons[0].style.color : '',
+              backgroundColor: this.buttons[0] ? this.buttons[0].style.color : ''
             },
     };
 
