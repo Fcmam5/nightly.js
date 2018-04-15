@@ -31,6 +31,16 @@ var Nightly = new Nightly({
             light: 'price-tag-light',
             dark: 'price-tag-dark'
           }],
+          classes: [
+            {
+              apply: 'my-selected-class',
+              to: 'my-dark-class-to-the-selected-class',
+            },
+            {
+              apply: 'another-selected-class',
+              to: 'another-dark-class-to-the-selected-class',
+            }
+          ]
         },
         nightCallback = function() {
           console.log('Good morning');

@@ -126,6 +126,10 @@ var Nightly = function(nightMode, nightCallback, dayCallback) {
       txtarea.style.backgroundColor = this.nightMode.textareas.backgroundColor;
     }
 
+    if (this.nightMode.classes.length > 0) {
+      this.applyClasses();
+    }
+
     this.darkifyCallback();
   };
   /**
@@ -158,6 +162,9 @@ var Nightly = function(nightMode, nightCallback, dayCallback) {
         txtarea.style.backgroundColor = this.initialTheme.textareas.backgroundColor;
       }
 
+      if (this.nightMode.classes.length > 0) {
+        this.removeClasses();
+      }
     }
     this.lightifyCallback();
   };
@@ -187,6 +194,38 @@ var Nightly = function(nightMode, nightCallback, dayCallback) {
         nv.className += " navbar-inverse";
       }
 
+    }
+  };
+  /**
+  * @private
+  * Apply classes on given selectors
+  */
+  this.applyClasses = function() {
+    var classes = this.nightMode.classes;
+    var element;
+
+    for (var i = 0; i < classes.length; i++) {
+      element = document.getElementsByClassName(classes[i].to);
+      console.log(element);
+      console.log(classes[i].to);
+      for (var j = 0; j < element.length; j++) {
+        element[j].classList.add(classes[i].apply);
+      }
+    }
+  };
+  /**
+  * @private
+  * Remove classes on given selectors
+  */
+  this.removeClasses = function() {
+    var classes = this.nightMode.classes;
+    var element;
+
+    for (var i = 0; i < classes.length; i++) {
+      element = document.getElementsByClassName(classes[i].to);
+      for (var j = 0; j < element.length; j++) {
+        element[j].classList.remove(classes[i].apply);
+      }
     }
   };
 };

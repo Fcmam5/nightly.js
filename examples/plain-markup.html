@@ -15,6 +15,22 @@
       .red-text {
         color: #D32F2F;
       }
+
+      .lower {
+        text-transform: lowercase;
+      }
+
+      .upper {
+        text-transform: uppercase;
+      }
+
+      .redify {
+        color: red;
+      }
+
+      .greenfy {
+        color: darkgreen;
+      }
     </style>
 
   </head>
@@ -35,11 +51,28 @@
           </textarea>
         </div>
       </form>
-
+      <div class="">
+        <p>Apply dark classes to classes</p>
+        <ul>
+          <li class="lower">Hello world</li>
+          <li class="upper">From Nightly.js</li>
+        </ul>
+      </div>
     </div>
     <script src="../src/nightly.js" charset="utf-8"></script>
     <script type="text/javascript">
-      var Nightly = new Nightly();
+      var Nightly = new Nightly({
+                                  classes: [
+                                    {
+                                      apply: 'redify',
+                                      to: 'upper'
+                                    },
+                                    {
+                                      apply: 'greenfy',
+                                      to: 'lower'
+                                    }
+                                  ],
+                                });
       document.getElementById("btn").addEventListener("click", function(){
         Nightly.toggle();
       });
