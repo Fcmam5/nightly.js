@@ -206,8 +206,6 @@ var Nightly = function(nightMode, nightCallback, dayCallback) {
 
     for (var i = 0; i < classes.length; i++) {
       element = document.getElementsByClassName(classes[i].to);
-      console.log(element);
-      console.log(classes[i].to);
       for (var j = 0; j < element.length; j++) {
         element[j].classList.add(classes[i].apply);
       }
