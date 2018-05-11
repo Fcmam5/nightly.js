@@ -86,7 +86,7 @@ var Nightly = function(nightMode, nightCallback, dayCallback) {
     this.initialTheme = {
       body: document.body.style.backgroundColor,
       texts: document.body.style.color,
-      links: this.linkTags[0].style.color || '',
+      links: this.linkTags[0] ? this.linkTags[0].style.color : '',
       inputs: {
               color: this.inputTags[0] ? this.inputTags[0].style.color : '',
               backgroundColor: this.inputTags[0] ?
