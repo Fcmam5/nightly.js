@@ -1,6 +1,10 @@
 # Nightly.js
+<p align="center">
+<img width="200" height="200" src="/doc/logo.png">
+</p>
 
 A zero dependency Javascript library for enabling dark/night mode in you UI.
+
 
 ## Usage
 
