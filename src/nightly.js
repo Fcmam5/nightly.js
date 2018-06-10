@@ -103,27 +103,33 @@ var Nightly = function(nightMode, nightCallback, dayCallback) {
       },
     };
 
+    var linkTagsLength = this.linkTags.length ? this.linkTags.length : 0;
+    var inputTagsLength = this.inputTags.length ? this.inputTags.length : 0;
+    var buttonTagsLength = this.buttons.length ? this.buttons.length : 0;
+    var textareaTagsLength = this.textareaTags.length ? this.textareaTags.length : 0;
+
     document.body.style.backgroundColor = this.nightMode.body;
     document.body.style.color = this.nightMode.texts;
-    for (a of this.linkTags) {
-      a.style.color = this.nightMode.links;
+    
+    for(var i = 0; i < linkTagsLength; i++){
+      this.linkTags[i].style.color = this.nightMode.links;
     }
 
-    for (inp of this.inputTags) {
-      inp.style.color = this.nightMode.inputs.color;
-      inp.style.backgroundColor = this.nightMode.inputs.backgroundColor;
+    for (i = 0; i < inputTagsLength; i++) {
+      this.inputTags[i].style.color = this.nightMode.inputs.color;
+      this.inputTags[i].style.backgroundColor = this.nightMode.inputs.backgroundColor;
     }
 
-    for (btn of this.buttons) {
-      btn.style.color = this.nightMode.buttons.color;
-      btn.style.borderColor = this.nightMode.buttons.backgroundColor;
-      btn.style.backgroundColor = this.nightMode.buttons.backgroundColor;
+    for (i = 0; i < buttonTagsLength; i++) {
+      this.buttons[i].style.color = this.nightMode.buttons.color;
+      this.buttons[i].style.borderColor = this.nightMode.buttons.backgroundColor;
+      this.buttons[i].style.backgroundColor = this.nightMode.buttons.backgroundColor;
     }
 
-    for (txtarea of this.textareaTags) {
-      txtarea.style.color = this.nightMode.textareas.color;
-      txtarea.style.borderColor = this.nightMode.textareas.color;
-      txtarea.style.backgroundColor = this.nightMode.textareas.backgroundColor;
+    for (i = 0; i < textareaTagsLength; i++) {
+      this.textareaTags[i].style.color = this.nightMode.textareas.color;
+      this.textareaTags[i].style.borderColor = this.nightMode.textareas.color;
+      this.textareaTags[i].style.backgroundColor = this.nightMode.textareas.backgroundColor;
     }
 
     if (this.nightMode.classes.length > 0) {
@@ -141,25 +147,31 @@ var Nightly = function(nightMode, nightCallback, dayCallback) {
       this.isDark = false;
       document.body.style.backgroundColor = this.initialTheme.body;
       document.body.style.color = this.initialTheme.texts;
-      for (a of this.linkTags) {
-        a.style.color = this.initialTheme.links;
+
+      var linkTagsLength = this.linkTags.length ? this.linkTags.length : 0;
+      var inputTagsLength = this.inputTags.length ? this.inputTags.length : 0;
+      var buttonTagsLength = this.buttons.length ? this.buttons.length : 0;
+      var textareaTagsLength = this.textareaTags.length ? this.textareaTags.length : 0;
+
+      for(var i = 0; i < linkTagsLength; i++){
+        this.linkTags[i].style.color = this.initialTheme.links;
       }
 
-      for (inp of this.inputTags) {
-        inp.style.color = this.initialTheme.inputs.color;
-        inp.style.backgroundColor = this.initialTheme.inputs.backgroundColor;
+      for (i = 0; i < inputTagsLength; i++) {
+        this.inputTags[i].style.color = this.initialTheme.inputs.color;
+        this.inputTags[i].style.backgroundColor = this.initialTheme.inputs.backgroundColor;
       }
 
-      for (btn of this.buttons) {
-        btn.style.color = this.initialTheme.buttons.color;
-        btn.style.borderColor = this.initialTheme.buttons.backgroundColor;
-        btn.style.backgroundColor = this.initialTheme.buttons.backgroundColor;
+      for (i = 0; i < buttonTagsLength; i++) {
+        this.buttons[i].style.color = this.initialTheme.buttons.color;
+        this.buttons[i].style.borderColor = this.initialTheme.buttons.backgroundColor;
+        this.buttons[i].style.backgroundColor = this.initialTheme.buttons.backgroundColor;
       }
 
-      for (txtarea of this.textareaTags) {
-        txtarea.style.color = this.initialTheme.textareas.color;
-        txtarea.style.borderColor = this.initialTheme.textareas.backgroundColor;
-        txtarea.style.backgroundColor = this.initialTheme.textareas.backgroundColor;
+      for (i = 0; i < textareaTagsLength; i++) {
+        this.textareaTags[i].style.color = this.initialTheme.textareas.color;
+        this.textareaTags[i].style.borderColor = this.initialTheme.textareas.backgroundColor;
+        this.textareaTags[i].style.backgroundColor = this.initialTheme.textareas.backgroundColor;
       }
 
       if (this.nightMode.classes.length > 0) {
@@ -190,8 +202,9 @@ var Nightly = function(nightMode, nightCallback, dayCallback) {
       * https://getbootstrap.com/docs/3.3/components/#navbar-inverted
       */
       var navbars = document.getElementsByClassName('navbar');
-      for(nv of navbars) {
-        nv.className += " navbar-inverse";
+      var navbarCounts = navbars.length ? navbars.length : 0;
+      for(var i = 0; i < navbarCounts; i++) {
+        navbars[i].className += " navbar-inverse";
       }
 
     }
