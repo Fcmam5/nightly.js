@@ -1,6 +1,6 @@
 # Nightly.js
 <p align="center">
-<img width="200" height="200" src="/doc/logo.png">
+<img width="200" height="200" src="./doc/logo.png">
 </p>
 
 A zero dependency Javascript library for enabling dark/night mode in you UI.
@@ -9,6 +9,13 @@ A zero dependency Javascript library for enabling dark/night mode in you UI.
 ## Usage
 
 1. Include `nightly.js` file
+```html
+<script src='nightly.js'></script>
+```
+or via [CDN](https://cdn.jsdelivr.net/):
+```html
+<script src='https://cdn.jsdelivr.net/gh/fcmam5/nightly.js@v1.0/dist/nightly.min.js'></script>
+```
 2. In you main Javascript file initiate the object
 
 ```javascript
