@@ -24,27 +24,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   */
 var defaults = {
   nightMode: {
-            body: "#282828",
-            texts: "#f5f5f5",
-            inputs: {color: '#f5f5f5', backgroundColor: "#313131"},
-            buttons: {color: "#f5f5f5", backgroundColor: "#757575"},
-            textareas: {color: '#f5f5f5', backgroundColor: "#313131"},
-            links: "#009688",
-            classes: [],
-            isTwbs3: false
-          },
-  nightCallback: function(){ },
-  dayCallback: function(){ },
+    body: "#282828",
+    texts: "#f5f5f5",
+    inputs: { color: '#f5f5f5', backgroundColor: "#313131" },
+    buttons: { color: "#f5f5f5", backgroundColor: "#757575" },
+    textareas: { color: '#f5f5f5', backgroundColor: "#313131" },
+    links: "#009688",
+    classes: [],
+    isTwbs3: false
+  },
 }
 
 /**
   *  Create the night mode with the settings passed in the contructor
   *   when not passing any parameters it Nightly will use the default values
   * @param nightMode - Object - The basic configuration of your night mode colors
-  * @param nightCallback - function - The callback after establishing the night mode
-  * @param dayCallback - function - The callback after disabling the night mode
   */
-var Nightly = function(nightMode, nightCallback, dayCallback) {
+var Nightly = function (nightMode) {
   this.isDark = false;
   this.initialTheme = null;
   this.nightMode = !nightMode ? defaults.nightMode : {
@@ -53,25 +49,23 @@ var Nightly = function(nightMode, nightCallback, dayCallback) {
     inputs: {
       color: nightMode.inputs ? nightMode.inputs.color : defaults.nightMode.inputs.color,
       backgroundColor: nightMode.inputs ? nightMode.inputs.backgroundColor :
-                                    defaults.nightMode.inputs.backgroundColor
+        defaults.nightMode.inputs.backgroundColor
     },
     buttons: {
       color: nightMode.buttons ? nightMode.buttons.color :
-                              defaults.nightMode.buttons.color,
+        defaults.nightMode.buttons.color,
       backgroundColor: nightMode.buttons ? nightMode.buttons.backgroundColor :
-                        defaults.nightMode.buttons.backgroundColor
+        defaults.nightMode.buttons.backgroundColor
     },
     textareas: {
       color: nightMode.textareas ? nightMode.textareas.color : defaults.nightMode.textareas.color,
       backgroundColor: nightMode.textareas ? nightMode.textareas.backgroundColor :
-      defaults.nightMode.textareas.backgroundColor
+        defaults.nightMode.textareas.backgroundColor
     },
     links: nightMode.links || defaults.nightMode.links,
     classes: nightMode.classes || defaults.nightMode.classes,
     isTwbs3: nightMode.isTwbs3 || defaults.nightMode.isTwbs3,
   };
-  this.darkifyCallback = nightCallback || defaults.nightCallback;
-  this.lightifyCallback = dayCallback || defaults.dayCallback;
   this.linkTags = document.getElementsByTagName('a');
   this.inputTags = document.getElementsByTagName('input');
   this.buttons = document.getElementsByTagName('button');
@@ -81,25 +75,25 @@ var Nightly = function(nightMode, nightCallback, dayCallback) {
   * @public
   * Apply the dark theme to the DOM elements
   */
-  this.darkify = function() {
+  this.darkify = function (cb) {
     this.isDark = true;
     this.initialTheme = {
       body: document.body.style.backgroundColor,
       texts: document.body.style.color,
       links: this.linkTags[0] ? this.linkTags[0].style.color : '',
       inputs: {
-              color: this.inputTags[0] ? this.inputTags[0].style.color : '',
-              backgroundColor: this.inputTags[0] ?
-                                    this.inputTags[0].style.backgroundColor : ''
-            },
+        color: this.inputTags[0] ? this.inputTags[0].style.color : '',
+        backgroundColor: this.inputTags[0] ?
+          this.inputTags[0].style.backgroundColor : ''
+      },
       buttons: {
-              color: this.buttons[0] ? this.buttons[0].style.color : '',
-              backgroundColor: this.buttons[0] ? this.buttons[0].style.color : ''
-            },
+        color: this.buttons[0] ? this.buttons[0].style.color : '',
+        backgroundColor: this.buttons[0] ? this.buttons[0].style.color : ''
+      },
       textareas: {
         color: this.textareaTags[0] ? this.textareaTags[0].style.color : '',
         backgroundColor: this.textareaTags[0] ?
-        this.textareaTags[0].style.backgroundColor : ''
+          this.textareaTags[0].style.backgroundColor : ''
       },
     };
 
@@ -110,8 +104,8 @@ var Nightly = function(nightMode, nightCallback, dayCallback) {
 
     document.body.style.backgroundColor = this.nightMode.body;
     document.body.style.color = this.nightMode.texts;
-    
-    for(var i = 0; i < linkTagsLength; i++){
+
+    for (var i = 0; i < linkTagsLength; i++) {
       this.linkTags[i].style.color = this.nightMode.links;
     }
 
@@ -136,13 +130,14 @@ var Nightly = function(nightMode, nightCallback, dayCallback) {
       this.applyClasses();
     }
 
-    this.darkifyCallback();
+    if (cb)
+      cb();
   };
   /**
   * @public
   * Save the initial styles
   */
-  this.lightify = function() {
+  this.lightify = function (cb) {
     if (this.initialTheme) {
       this.isDark = false;
       document.body.style.backgroundColor = this.initialTheme.body;
@@ -153,7 +148,7 @@ var Nightly = function(nightMode, nightCallback, dayCallback) {
       var buttonTagsLength = this.buttons.length ? this.buttons.length : 0;
       var textareaTagsLength = this.textareaTags.length ? this.textareaTags.length : 0;
 
-      for(var i = 0; i < linkTagsLength; i++){
+      for (var i = 0; i < linkTagsLength; i++) {
         this.linkTags[i].style.color = this.initialTheme.links;
       }
 
@@ -178,23 +173,24 @@ var Nightly = function(nightMode, nightCallback, dayCallback) {
         this.removeClasses();
       }
     }
-    this.lightifyCallback();
+    if (cb)
+      cb();
   };
   /**
   * @public
   * Toggle darkify and lightify
   */
-  this.toggle = function() {
+  this.toggle = function (nightCallback, dayCallback) {
     if (this.isDark) {
-      this.lightify();
+      this.lightify(dayCallback);
     } else {
-      this.darkify();
+      this.darkify(nightCallback);
     }
   };
   /**
   * Twitter Bootstrap 3 configuration
   */
-  this.twbs3Darkify = function() {
+  this.twbs3Darkify = function () {
     // TODO
     if (this.nightMode.isTwbs3) {
       /**
@@ -203,7 +199,7 @@ var Nightly = function(nightMode, nightCallback, dayCallback) {
       */
       var navbars = document.getElementsByClassName('navbar');
       var navbarCounts = navbars.length ? navbars.length : 0;
-      for(var i = 0; i < navbarCounts; i++) {
+      for (var i = 0; i < navbarCounts; i++) {
         navbars[i].className += " navbar-inverse";
       }
 
@@ -213,7 +209,7 @@ var Nightly = function(nightMode, nightCallback, dayCallback) {
   * @private
   * Apply classes on given selectors
   */
-  this.applyClasses = function() {
+  this.applyClasses = function () {
     var classes = this.nightMode.classes;
     var element;
 
@@ -228,7 +224,7 @@ var Nightly = function(nightMode, nightCallback, dayCallback) {
   * @private
   * Remove classes on given selectors
   */
-  this.removeClasses = function() {
+  this.removeClasses = function () {
     var classes = this.nightMode.classes;
     var element;
 

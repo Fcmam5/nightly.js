@@ -52,12 +52,6 @@ var Nightly = new Nightly({
               to: 'another-dark-class-to-the-selected-class',
             }
           ]
-        },
-        nightCallback = function() {
-          console.log('Good morning');
-        },
-        lightifyCallback = function() {
-          console.log('Good evening');
         }
       );
 ```
@@ -74,6 +68,29 @@ Nightly.lightify();
 // Toggle between dark and light mode
 Nightly.toggle();
 ```
+
+
+- You can also pass callbacks to `darkify()`, `lightify()`. 
+And `toggle()` takes two callbacks (enableDarkModeCallback, enableLightModeCallback), for example:
+
+```javascript
+var sayGoodMorning = function() {
+  console.log('Good morning !');
+}
+
+var sayGoodNight = function() {
+  console.log('Good night!');
+}
+
+// Pass sayGoodMorning() as callback to darkify
+Nightly.darkify(sayGoodMorning);
+
+// toggle() takes two callbacks (darkifyCallback, lightifyCallback)
+Nightly.toggle(sayGoodNight, sayGoodMorning);
+
+```
+
+
 
 ### Example
 
@@ -125,7 +142,6 @@ The result was as the following:
 
 ## TODO
 
-- [ ] Create events (onDark, onLight)
 - [ ] Add state persistence: use localstorage
 - [ ] Continue working on bootstrap `twbs3Darkify()` function (suggestion: [darkly](https://bootswatch.com/3/darkly/) theme)
 - [ ] Add supported browsers section after testing it
