@@ -1,0 +1,32 @@
+{
+  "name": "nightly.js",
+  "version": "1.0.0",
+  "description": "A zero dependency javascript library that enables the night mode in your website easily ",
+  "main": "dist/nightly.min.js",
+  "directories": {
+    "doc": "doc",
+    "example": "examples",
+    "test": "test"
+  },
+  "scripts": {
+    "build": "uglifyjs src/nightly.js -c -m --source-map -o dist/nightly.min.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fcmam5/nightly.js.git"
+  },
+  "keywords": [
+    "dark",
+    "night",
+    "ui",
+    "frontend",
+    "darkmode"
+  ],
+  "author": "Fortas Abdeldjalil",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Fcmam5/nightly.js/issues"
+  },
+  "homepage": "https://github.com/Fcmam5/nightly.js#readme"
+}
