@@ -1,4 +1,7 @@
-# Nightly.js
+# Nightly.js 
+
+[![GitHub license](https://img.shields.io/github/license/Fcmam5/nightly.js.svg)](https://github.com/Fcmam5/nightly.js/blob/develop/LICENSE)
+
 <p align="center">
 <img width="200" height="200" src="./doc/logo.png">
 </p>
@@ -8,59 +11,65 @@ A zero dependency Javascript library for enabling dark/night mode in you UI.
 
 ## Usage
 
-1. Include `nightly.js` file
-```html
-<script src='nightly.js'></script>
-```
-or via [CDN](https://cdn.jsdelivr.net/):
-```html
-<script src='https://cdn.jsdelivr.net/gh/fcmam5/nightly.js@v1.0/dist/nightly.min.js'></script>
-```
+1. Include Nightly.js
+
+* Via `<script/>` tag
+  ```html
+  <!-- Download this repository then use "dist/nightly.min.js" -->
+  <script src='nightly.min.js'></script>
+  
+  <!-- Or use CDN -->
+  <script src='https://cdn.jsdelivr.net/gh/fcmam5/nightly.js@v1.0/dist/nightly.min.js'></script>
+  ```
+
+* Or if you prefer [npm](https://www.npmjs.com/package/nightly.js):
+  ```
+  npm install --save nightly.js
+  ```
+  Then include it 
+  ```javascript
+  var Nightly = require('nightly.js');
+  ```
+
 2. In you main Javascript file initiate the object
 
-```javascript
-var Nightly = new Nightly();
-```
+  * Using default Parameters:
+    ```javascript
+    var Nightly = new Nightly();
+    ```
 
-And you can costumize your parameters
-
-```javascript
-var Nightly = new Nightly({
-          body: "backgorund color", // Default: #282828
-          texts: "texts color", // Default: #f5f5f5
-          inputs: {
-            color: "text color inside inputs", // Default: #f5f5f5
-            backgroundColor: "background color" // Default #313131
-          },
-          buttons: {
-            color: "button's text color", // Default: #f5f5f5
-            backgroundColor: "button's backgournd color" // #757575
-          },
-          links: "links color (normal state)", // Default: #009688
-          isTwbs3: 'boolean: are you working with Bootstrap3 ?', //Default false
-          classes: [{ // Classes to apply when enabling the dark mode on certain elements
-            light: 'price-tag-light',
-            dark: 'price-tag-dark'
-          }],
-          classes: [
-            {
-              apply: 'my-selected-class',
-              to: 'my-dark-class-to-the-selected-class',
-            },
-            {
-              apply: 'another-selected-class',
-              to: 'another-dark-class-to-the-selected-class',
+  * Or can costumize your parameters
+    ```javascript
+    var Nightly = new Nightly({
+              body: "backgorund color", // Default: #282828
+              texts: "texts color", // Default: #f5f5f5
+              inputs: {
+                color: "text color inside inputs", // Default: #f5f5f5
+                backgroundColor: "background color" // Default #313131
+              },
+              buttons: {
+                color: "button's text color", // Default: #f5f5f5
+                backgroundColor: "button's backgournd color" // #757575
+              },
+              links: "links color (normal state)", // Default: #009688
+              isTwbs3: 'boolean: are you working with Bootstrap3 ?', //Default false
+              classes: [{ // Classes to apply when enabling the dark mode on certain elements
+                light: 'price-tag-light',
+                dark: 'price-tag-dark'
+              }],
+              classes: [
+                {
+                  apply: 'my-selected-class',
+                  to: 'my-dark-class-to-the-selected-class',
+                },
+                {
+                  apply: 'another-selected-class',
+                  to: 'another-dark-class-to-the-selected-class',
+                }
+              ]
             }
-          ]
-        },
-        nightCallback = function() {
-          console.log('Good morning');
-        },
-        lightifyCallback = function() {
-          console.log('Good evening');
-        }
-      );
-```
+          );
+      ```
 
 3. Call the `darkify()` or the `toggle()` function
 
@@ -74,6 +83,29 @@ Nightly.lightify();
 // Toggle between dark and light mode
 Nightly.toggle();
 ```
+
+
+- You can also pass callbacks to `darkify()`, `lightify()`. 
+And `toggle()` takes two callbacks (enableDarkModeCallback, enableLightModeCallback), for example:
+
+```javascript
+var sayGoodMorning = function() {
+  console.log('Good morning !');
+}
+
+var sayGoodNight = function() {
+  console.log('Good night!');
+}
+
+// Pass sayGoodMorning() as callback to darkify
+Nightly.darkify(sayGoodMorning);
+
+// toggle() takes two callbacks (darkifyCallback, lightifyCallback)
+Nightly.toggle(sayGoodNight, sayGoodMorning);
+
+```
+
+
 
 ### Example
 
@@ -125,9 +157,8 @@ The result was as the following:
 
 ## TODO
 
-- [ ] Create events (onDark, onLight)
 - [ ] Add state persistence: use localstorage
-- [ ] Continue working on bootstrap `twbs3Darkify()` function (suggestion: [darkly](https://bootswatch.com/3/darkly/) theme)
+- [ ] Continue working on bootstrap `twbs3Darkify()` function (suggestion: [darkly](https://bootswatch.com/3/darkly/) theme), or better: Make it a separated plugin for Nightly.js
 - [ ] Add supported browsers section after testing it
 - [ ] Improve [usage](#usage) section
 - [ ] Document and refactor the code

@@ -60,6 +60,14 @@
 
     <script src="../src/nightly.js" charset="utf-8"></script>
     <script type="text/javascript">
+      var sayGoodNight = function() {
+        console.log("Good night :) !");
+      }
+
+      var sayGoodMorning = function() {
+        console.log("Good morning !");
+      }
+
       var Nightly = new Nightly({
                                   classes: [
                                     {
@@ -76,8 +84,11 @@
                                     }
                                   ],
                                 });
+                                
       document.getElementById("toggle-nightify-btn").addEventListener("click", function(){
-        Nightly.toggle();
+
+        // toggle() function takes two optional callbacks
+        Nightly.toggle(sayGoodNight, sayGoodMorning);
       });
 
     </script>
