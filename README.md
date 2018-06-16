@@ -1,6 +1,8 @@
 # Nightly.js 
 
 [![GitHub license](https://img.shields.io/github/license/Fcmam5/nightly.js.svg)](https://github.com/Fcmam5/nightly.js/blob/develop/LICENSE)
+ [![npm](https://img.shields.io/npm/v/npm.svg)](https://www.npmjs.com/package/nightly.js)
+ [![Github file size](https://img.shields.io/github/size/webcaetano/craft/build/phaser-craft.min.js.svg)](https://github.com/Fcmam5/nightly.js/blob/develop/dist/nightly.min.js)
 
 <p align="center">
 <img width="200" height="200" src="./doc/logo.png">

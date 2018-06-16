@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Mocha: Testing Nightly.js</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="mocha.css" />
+</head>
+
+<body>
+  <div id="mocha"></div>
+  <div id="messages"></div>
+  <div id="fixtures"></div>
+
+  <script src="mocha.js"></script>
+  <script src="chai.js"></script>
+  <script src="blanket.min.js" data-cover-adapter="mocha-blanket.js"></script>
+  <script>mocha.setup('bdd');</script>
+  <!-- Load my library -->
+  <script src="../src/nightly.js" data-cover></script>
+  <script src="tests.js"></script>
+  <script>
+    mocha.run();
+  </script>
+</body>
+
+</html>
