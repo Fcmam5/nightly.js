@@ -1,7 +1,6 @@
 /**
 nightly.js is a zero dependency javascript library, it makes it easy and painless
 to enable the "Night (Dark) mode" in your website
-- TODO: Add supported browsers here -
 Visit https://github.com/Fcmam5/nightly.js for more info.
 Copyright (c) 2018 Fortas Abdeldjalil <dr.fcmam5[at]gmail.com>
 All rights reserved.
