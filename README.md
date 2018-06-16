@@ -1,6 +1,8 @@
 # Nightly.js 
 
-[![GitHub license](https://img.shields.io/github/license/Fcmam5/nightly.js.svg)](https://github.com/Fcmam5/nightly.js/blob/develop/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/Fcmam5/nightly.js.svg)](https://github.com/Fcmam5/nightly.js/blob/master/LICENSE)
+[![dependencies Status](https://david-dm.org/Fcmam5/nightly.js/status.png)](https://github.com/Fcmam5/nightly.js)
+[![npm version](https://badge.fury.io/js/nightly.js.png)](https://www.npmjs.com/package/nightly.js)
 
 <p align="center">
 <img width="200" height="200" src="./doc/logo.png">

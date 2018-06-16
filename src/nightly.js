@@ -1,7 +1,6 @@
 /**
 nightly.js is a zero dependency javascript library, it makes it easy and painless
 to enable the "Night (Dark) mode" in your website
-- TODO: Add supported browsers here -
 Visit https://github.com/Fcmam5/nightly.js for more info.
 Copyright (c) 2018 Fortas Abdeldjalil <dr.fcmam5[at]gmail.com>
 All rights reserved.
@@ -77,6 +76,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     * Apply the dark theme to the DOM elements
     */
     this.darkify = function (cb) {
+      if (this.isDark)
+        return;
       this.isDark = true;
       this.initialTheme = {
         body: document.body.style.backgroundColor,
@@ -241,7 +242,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   // Check if it is CommonJS a environments (example: Node)
   if (typeof module === 'object' && module.exports) {
     module.exports = Nightly;
-  } else {    
+  } else {
     // Export as browser globals (roow is window)
     root.Nightly = Nightly;
   }
