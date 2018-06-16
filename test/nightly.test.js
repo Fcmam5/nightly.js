@@ -1,4 +1,5 @@
-var expect = chai.expect;
+// var expect = chai.expect;
+var expect = typeof require !== 'undefined' ? require('chai').expect: chai.expect;
 describe('Loading Nightly.js', function () {
     describe('Instiantiation', function () {
         it('Should load window.Nightly', function () {
@@ -6,11 +7,17 @@ describe('Loading Nightly.js', function () {
         });
 
         it('Should instantiate Nightly.js object without paramters', function () {
-            expect(typeof new Nightly()).to.be.equal('object')
+            expect(new Nightly()).to.be.an('object')
         });
     })
-
     describe('Darkify function should work', function () {
+        beforeEach(function() {
+            this.nightly = new Nightly();
+        });
+
+        it('Enables the night mode', function(){
+            expect(this.nightly.darkify).to.be.a('function');
+        });
 
     });
 });

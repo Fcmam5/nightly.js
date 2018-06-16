@@ -77,6 +77,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     * Apply the dark theme to the DOM elements
     */
     this.darkify = function (cb) {
+      if (this.isDark)
+        return;
       this.isDark = true;
       this.initialTheme = {
         body: document.body.style.backgroundColor,
@@ -241,7 +243,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   // Check if it is CommonJS a environments (example: Node)
   if (typeof module === 'object' && module.exports) {
     module.exports = Nightly;
-  } else {    
+  } else {
     // Export as browser globals (roow is window)
     root.Nightly = Nightly;
   }
