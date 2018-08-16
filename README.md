@@ -3,9 +3,10 @@
 [![GitHub license](https://img.shields.io/github/license/Fcmam5/nightly.js.svg)](https://github.com/Fcmam5/nightly.js/blob/master/LICENSE)
 [![dependencies Status](https://david-dm.org/Fcmam5/nightly.js/status.png)](https://github.com/Fcmam5/nightly.js)
 [![npm version](https://badge.fury.io/js/nightly.js.png)](https://www.npmjs.com/package/nightly.js)
+[![Open Source Helpers](https://www.codetriage.com/fcmam5/nightly.js/badges/users.svg)](https://www.codetriage.com/fcmam5/nightly.js)
 
 <p align="center">
-<img width="200" height="200" src="./doc/logo.png">
+<img width="200" height="200" src="./docs/logo.png">
 </p>
 
 A zero dependency Javascript library for enabling dark/night mode in you UI.
@@ -160,11 +161,14 @@ The result was as the following:
 ## TODO
 
 - [ ] Add state persistence: use localstorage
-- [ ] Continue working on bootstrap `twbs3Darkify()` function (suggestion: [darkly](https://bootswatch.com/3/darkly/) theme), or better: Make it a separated plugin for Nightly.js
 - [ ] Add supported browsers section after testing it
 - [ ] Improve [usage](#usage) section
 - [ ] Document and refactor the code
-- [ ] Write tests
+- [ ] Continue writing tests
+- [ ] Write plugins for frameworks like Bootstrap
+  - [ ] Bootstrap
+  - [ ] Foundation
+  - [ ] Materialize
 
 ## License
 This project is licensed under the GNU GPL v3.0 License - see the [LICENSE](./LICENSE) file for details
