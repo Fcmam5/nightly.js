@@ -190,24 +190,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       }
     };
     /**
-    * Twitter Bootstrap 3 configuration
-    */
-    this.twbs3Darkify = function () {
-      // TODO
-      if (this.nightMode.isTwbs3) {
-        /**
-        * Get all navbars and add 'navbar-inverse'
-        * https://getbootstrap.com/docs/3.3/components/#navbar-inverted
-        */
-        var navbars = document.getElementsByClassName('navbar');
-        var navbarCounts = navbars.length ? navbars.length : 0;
-        for (var i = 0; i < navbarCounts; i++) {
-          navbars[i].className += " navbar-inverse";
-        }
-
-      }
-    };
-    /**
     * @private
     * Apply classes on given selectors
     */
