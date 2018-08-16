@@ -55,14 +55,9 @@ A zero dependency Javascript library for enabling dark/night mode in you UI.
                 backgroundColor: "button's backgournd color" // #757575
               },
               links: "links color (normal state)", // Default: #009688
-              isTwbs3: 'boolean: are you working with Bootstrap3 ?', //Default false
-              classes: [{ // Classes to apply when enabling the dark mode on certain elements
-                light: 'price-tag-light',
-                dark: 'price-tag-dark'
-              }],
-              classes: [
+              classes: [// Classes to apply when enabling the dark mode on certain elements
                 {
-                  apply: 'my-selected-class',
+                  apply: 'my-selected-class', 
                   to: 'my-dark-class-to-the-selected-class',
                 },
                 {
