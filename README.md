@@ -1,4 +1,4 @@
-# Nightly.js 
+# Nightly.js
 
 [![GitHub license](https://img.shields.io/github/license/Fcmam5/nightly.js.svg)](https://github.com/Fcmam5/nightly.js/blob/master/LICENSE)
 [![dependencies Status](https://david-dm.org/Fcmam5/nightly.js/status.png)](https://github.com/Fcmam5/nightly.js)
@@ -11,12 +11,12 @@
 
 A zero dependency Javascript library for enabling dark/night mode in you UI.
 
-
 ## Usage
 
 1. Include Nightly.js
 
 * Via `<script/>` tag
+
   ```html
   <!-- Download this repository then use "dist/nightly.min.js" -->
   <script src='nightly.min.js'></script>
@@ -26,24 +26,30 @@ A zero dependency Javascript library for enabling dark/night mode in you UI.
   ```
 
 * Or if you prefer [npm](https://www.npmjs.com/package/nightly.js):
+
   ```
   npm install --save nightly.js
   ```
+
   Then include it 
+
   ```javascript
   var Nightly = require('nightly.js');
   ```
 
 2. In you main Javascript file initiate the object
 
-  * Using default Parameters:
-    ```javascript
-    var Nightly = new Nightly();
-    ```
+   * Using default Parameters with persistence disabled:
 
-  * Or can costumize your parameters
-    ```javascript
-    var Nightly = new Nightly({
+     ```javascript
+     var Nightly = new Nightly();
+     ```
+
+   * Or can customize your parameters (the first parameter is to enable persistence and the second is to customize default settings):
+
+     ```javascript
+     // To disable persistence, set false instead of true
+     var Nightly = new Nightly(true, {
               body: "backgorund color", // Default: #282828
               texts: "texts color", // Default: #f5f5f5
               inputs: {
@@ -67,7 +73,7 @@ A zero dependency Javascript library for enabling dark/night mode in you UI.
               ]
             }
           );
-      ```
+     ```
 
 3. Call the `darkify()` or the `toggle()` function
 
@@ -82,9 +88,8 @@ Nightly.lightify();
 Nightly.toggle();
 ```
 
-
 - You can also pass callbacks to `darkify()`, `lightify()`. 
-And `toggle()` takes two callbacks (enableDarkModeCallback, enableLightModeCallback), for example:
+  And `toggle()` takes two callbacks (enableDarkModeCallback, enableLightModeCallback), for example:
 
 ```javascript
 var sayGoodMorning = function() {
@@ -100,14 +105,12 @@ Nightly.darkify(sayGoodMorning);
 
 // toggle() takes two callbacks (darkifyCallback, lightifyCallback)
 Nightly.toggle(sayGoodNight, sayGoodMorning);
-
 ```
-
-
 
 ### Example
 
 In our [first example](./examples/plain-markup.html) we created a simple page as the following:
+
 ```html
 <style media="screen">
   body { padding: 50px; }
@@ -140,6 +143,7 @@ then we set an event listener to a button to execute our `toggle()` method, that
 ```html
 <script src="../src/nightly.js" charset="utf-8"></script>
 <script type="text/javascript">
+  // Persistence disabled
   var Nightly = new Nightly();
   document.getElementById("btn").addEventListener("click", function(){
     Nightly.toggle();
@@ -155,15 +159,16 @@ The result was as the following:
 
 ## TODO
 
-- [ ] Add state persistence: use localstorage
+- [x] Add state persistence: use localstorage
 - [ ] Add supported browsers section after testing it
 - [ ] Improve [usage](#usage) section
 - [ ] Document and refactor the code
 - [ ] Continue writing tests
 - [ ] Write plugins for frameworks like Bootstrap
-  - [ ] Bootstrap
-  - [ ] Foundation
-  - [ ] Materialize
+      - [ ] Bootstrap
+      - [ ] Foundation
+      - [ ] Materialize
 
 ## License
+
 This project is licensed under the GNU GPL v3.0 License - see the [LICENSE](./LICENSE) file for details
