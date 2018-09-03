@@ -40,8 +40,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     *   when not passing any parameters it Nightly will use the default values
     * @param nightMode - Object - The basic configuration of your night mode colors
     */
-  var Nightly = function (nightMode) {
-    this.isDark = false;
+  var Nightly = function (nightMode, persistence = false) {
+    this.isDark = persistence ? null : false;
     this.initialTheme = null;
     this.nightMode = !nightMode ? defaults.nightMode : {
       body: nightMode.body || defaults.nightMode.body,
@@ -78,7 +78,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     this.darkify = function (cb) {
       if (this.isDark)
         return;
-      this.isDark = true;
+      this.isDark = persistence ? this.setLocalStorage(true) : true;
       this.initialTheme = {
         body: document.body.style.backgroundColor,
         texts: document.body.style.color,
@@ -132,6 +132,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         this.applyClasses();
       }
 
+      console.log(this.initialTheme, this.nightMode)
+
       if (cb)
         cb();
     };
@@ -141,7 +143,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     */
     this.lightify = function (cb) {
       if (this.initialTheme) {
-        this.isDark = false;
+        this.isDark = persistence ? this.setLocalStorage(false) : false;
         document.body.style.backgroundColor = this.initialTheme.body;
         document.body.style.color = this.initialTheme.texts;
 
@@ -219,13 +221,59 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         }
       }
     };
+    /**
+    * @private
+    * Check LocalStorage to retrieve data and load isDark and nightMode properties
+    */
+    this.checkLocalStorage = function () {
+      var localIsDark = root.localStorage.getItem('nightlyIsDark');
+      var localNightMode = root.localStorage.getItem('nightlyNightMode');
+
+      // If already has nightMode value in localStorage and nightMode parameter wasn't passed, then load nightMode property
+      if (localNightMode && !nightMode) {
+        this.nightMode = JSON.parse(localNightMode);
+      }
+
+      // If isDark value in localStorage is equal 'true', then run darkify, if equal 'false', run lightify 
+      // method and if doesn't isDark value in LocalStorage then setLocalStorage 
+      if (localIsDark === 'true') {
+        this.darkify();
+      } else if (localIsDark === 'false') {
+        this.lightify();
+      } else {
+        this.setLocalStorage(false);
+      }
+    }
+    /**
+    * @private
+    * Set isDark and nightMode properties in LocalStorage to enable persist
+    */
+    this.setLocalStorage = function (bool) {
+      root.localStorage.setItem('nightlyIsDark', bool);
+      root.localStorage.setItem('nightlyNightMode', JSON.stringify(this.nightMode));
+      return bool;
+    }
+    /**
+    * @private
+    * Clear all LocalStorage values
+    */
+    this.clearLocalStorage = function () {
+      root.localStorage.removeItem('nightlyIsDark');
+      root.localStorage.removeItem('nightlyNightMode');
+    }
+
+    if (persistence) {
+      this.checkLocalStorage();
+    } else {
+      this.clearLocalStorage();
+    }
   };
 
   // Check if it is CommonJS a environments (example: Node)
   if (typeof module === 'object' && module.exports) {
     module.exports = Nightly;
   } else {
-    // Export as browser globals (roow is window)
+    // Export as browser globals (root is window)
     root.Nightly = Nightly;
   }
 
