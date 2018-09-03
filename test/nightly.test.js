@@ -44,7 +44,9 @@ describe('Loading Nightly.js', function () {
         it('darkify() won\'t work if isDark is true', function () {
             var bgColor = document.body.style.backgroundColor;
             expect(document.body.style.backgroundColor).to.be.equal(bgColor);
-            expect(this.nightly.isDark).to.be.false;
+            expect(this.nightly.isDark).to.satisfy(function(value) {
+                return value === null || value === false;
+            });
             this.nightly.isDark = true;
             // Running darkify() must not break the test
             this.nightly.darkify();
@@ -57,7 +59,9 @@ describe('Loading Nightly.js', function () {
         it('darkify() will work if isDark is false', function () {
             var bgColor = document.body.style.backgroundColor;
             expect(document.body.style.backgroundColor).to.be.equal(bgColor);
-            expect(this.nightly.isDark).to.be.false;
+            expect(this.nightly.isDark).to.satisfy(function(value) {
+                return value === null || value === false;
+            });
             
             this.nightly.darkify();
             
