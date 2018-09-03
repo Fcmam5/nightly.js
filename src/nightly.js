@@ -40,7 +40,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     *   when not passing any parameters it Nightly will use the default values
     * @param nightMode - Object - The basic configuration of your night mode colors
     */
-  var Nightly = function (nightMode, persistence = false) {
+  var Nightly = function (persistence = false, nightMode) {
     this.isDark = persistence ? null : false;
     this.initialTheme = null;
     this.nightMode = !nightMode ? defaults.nightMode : {
@@ -255,7 +255,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     }
     /**
     * @private
-    * Clear all LocalStorage values
+    * Clear all saved values/properties in LocalStorage
     */
     this.clearLocalStorage = function () {
       root.localStorage.removeItem('nightlyIsDark');

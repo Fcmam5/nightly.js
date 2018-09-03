@@ -61,7 +61,7 @@
     </div>
     <script src="../src/nightly.js" charset="utf-8"></script>
     <script type="text/javascript">
-      var Nightly = new Nightly({
+      var Nightly = new Nightly(true, {
                                   classes: [
                                     {
                                       apply: 'redify',
@@ -72,7 +72,7 @@
                                       to: 'lower'
                                     }
                                   ],
-                                }, true);
+                                });
       document.getElementById("btn").addEventListener("click", function(){
         Nightly.toggle();
       });

@@ -68,7 +68,8 @@
         console.log("Good morning !");
       }
 
-      var Nightly = new Nightly({
+      // Persistence disabled
+      var Nightly = new Nightly(false, {
                                   classes: [
                                     {
                                       apply: 'hilighted-tex-dark',
@@ -83,7 +84,7 @@
                                       to: 'comment-card'
                                     }
                                   ],
-                                }, true);
+                                });
                                 
       document.getElementById("toggle-nightify-btn").addEventListener("click", function(){
 
