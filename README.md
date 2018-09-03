@@ -45,7 +45,9 @@ A zero dependency Javascript library for enabling dark/night mode in you UI.
      var Nightly = new Nightly();
      ```
 
-   * Or can customize your parameters (the first parameter is to enable persistence and the second is to customize default settings):
+   * Or can customize your parameters 
+
+     *The first parameter is to enable persistence and the second is to customize default settings*
 
      ```javascript
      // To disable persistence, set false instead of true
