@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>Nightly.js example 101</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css"
+    />
     <style media="screen">
       body {
         padding: 50px;
@@ -13,7 +16,7 @@
         width: 150px;
       }
       .red-text {
-        color: #D32F2F;
+        color: #d32f2f;
       }
 
       .lower {
@@ -32,21 +35,31 @@
         color: darkgreen;
       }
     </style>
-
   </head>
   <body>
-    <h1>Hello, world <span class="red-text">!</span> <button type="button" name="button" id="btn">Toggle</button></h1>
+    <h1>
+      Hello, world <span class="red-text">!</span>
+      <button type="button" name="button" id="btn">Toggle</button>
+    </h1>
     <p>Please, <a href="#">Click here</a></p>
 
     <div id="form-container">
       <form>
         <div>
           <label for="name">Your name</label>
-          <input type="text" name="name" value="Hello world" placeholder="name">
+          <input
+            type="text"
+            name="name"
+            value="Hello world"
+            placeholder="name"
+          />
         </div>
 
         <div>
-          <textarea name="message" style="width:600px; height:200px; margin-top:20px;">
+          <textarea
+            name="message"
+            style="width: 600px; height: 200px; margin-top: 20px;"
+          >
             The cat was playing in the garden.
           </textarea>
         </div>
@@ -61,22 +74,24 @@
     </div>
     <script src="../src/nightly.js" charset="utf-8"></script>
     <script type="text/javascript">
-      var Nightly = new Nightly(true, {
-                                  classes: [
-                                    {
-                                      apply: 'redify',
-                                      to: '.upper'
-                                    },
-                                    {
-                                      apply: 'greenfy',
-                                      to: '.lower'
-                                    }
-                                  ],
-                                });
-      document.getElementById("btn").addEventListener("click", function(){
+      var Nightly = new Nightly(
+        {
+          classes: [
+            {
+              apply: 'redify',
+              to: '.upper',
+            },
+            {
+              apply: 'greenfy',
+              to: '.lower',
+            },
+          ],
+        },
+        true
+      );
+      document.getElementById('btn').addEventListener('click', function () {
         Nightly.toggle();
       });
-
     </script>
   </body>
 </html>
