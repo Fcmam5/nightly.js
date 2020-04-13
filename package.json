@@ -1,6 +1,6 @@
 {
   "name": "nightly.js",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "A zero dependency javascript library that enables the night mode in your website easily ",
   "main": "dist/nightly.min.js",
   "directories": {
@@ -23,7 +23,10 @@
     "frontend",
     "darkmode"
   ],
-  "author": "Fortas Abdeldjalil",
+  "author": {
+    "name": "Fortas Abdeldjalil",
+    "url": "https://fcmam5.me"
+  },
   "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/Fcmam5/nightly.js/issues"
@@ -31,14 +34,14 @@
   "homepage": "https://github.com/Fcmam5/nightly.js#readme",
   "devDependencies": {
     "chai": "4.2.0",
-    "karma": "4.0.1",
+    "karma": "5.0.1",
     "karma-chai-plugins": "0.9.0",
-    "karma-chrome-launcher": "2.2.0",
-    "karma-coverage": "1.1.2",
-    "karma-firefox-launcher": "1.1.0",
+    "karma-chrome-launcher": "3.1.0",
+    "karma-coverage": "2.0.1",
+    "karma-firefox-launcher": "1.3.0",
     "karma-mocha": "1.3.0",
     "karma-mocha-reporter": "2.2.5",
-    "mocha": "^6.0.2",
+    "mocha": "7.1.1",
     "uglify-es": "^3.3.10"
   },
   "dependencies": {}

@@ -200,7 +200,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       var element;
 
       for (var i = 0; i < classes.length; i++) {
-        element = document.getElementsByClassName(classes[i].to);
+        element = document.querySelectorAll(classes[i].to);
         for (var j = 0; j < element.length; j++) {
           element[j].classList.add(classes[i].apply);
         }
@@ -215,7 +215,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       var element;
 
       for (var i = 0; i < classes.length; i++) {
-        element = document.getElementsByClassName(classes[i].to);
+        element = document.querySelectorAll(classes[i].to);
         for (var j = 0; j < element.length; j++) {
           element[j].classList.remove(classes[i].apply);
         }

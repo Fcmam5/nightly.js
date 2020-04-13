@@ -65,12 +65,12 @@ A zero dependency Javascript library for enabling dark/night mode in you UI.
               links: "links color (normal state)", // Default: #009688
               classes: [// Classes to apply when enabling the dark mode on certain elements
                 {
-                  apply: 'my-selected-class', 
-                  to: 'my-dark-class-to-the-selected-class',
+                  apply: 'my-selected-class', // just the class name (without the .)
+                  to: '.my-dark-class-to-the-selected-class .some-nested-class', // uses querySelectorAll
                 },
                 {
                   apply: 'another-selected-class',
-                  to: 'another-dark-class-to-the-selected-class',
+                  to: '.another-dark-class-to-the-selected-class.some-class .some-nested-class',
                 }
               ]
             }

@@ -27,7 +27,7 @@ p {
   background-size: cover;
 }
 
-.hilighted-tex{
+.hilighted-text{
   background-color: rgba(255, 0, 0, 0.5);
   cursor: pointer;
 }
@@ -74,7 +74,7 @@ p {
 }
 
 /*Dark mode classes*/
-.hilighted-tex-dark{
+.hilighted-text-dark{
   background-color: rgba(255, 0, 0, 0.9);
   text-decoration: line-through;;
   cursor: pointer;
