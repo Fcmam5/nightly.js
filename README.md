@@ -15,7 +15,7 @@ A zero dependency Javascript library for enabling dark/night mode in you UI.
 
 1. Include Nightly.js
 
-- Via `<script/>` tag
+- Via `<script>` tag
 
   ```html
   <!-- Download this repository then use "dist/nightly.min.js" -->
@@ -25,7 +25,7 @@ A zero dependency Javascript library for enabling dark/night mode in you UI.
   <script src="https://cdn.jsdelivr.net/gh/fcmam5/nightly.js@v1.0/dist/nightly.min.js"></script>
   ```
 
-- Or if you prefer [npm](https://www.npmjs.com/package/nightly.js):
+- Or if you prefer [npm](https://www.npmjs.com/package/nightly.js), run following command at you project's directory:
 
   ```
   npm install --save nightly.js
@@ -37,7 +37,7 @@ A zero dependency Javascript library for enabling dark/night mode in you UI.
   var Nightly = require('nightly.js');
   ```
 
-2. In you main Javascript file initiate the object
+2. In your main JavaScript file initiate the object
 
    - Using default Parameters with persistence disabled:
 
@@ -45,7 +45,7 @@ A zero dependency Javascript library for enabling dark/night mode in you UI.
      var Nightly = new Nightly();
      ```
 
-   - Or can customize your parameters
+   - Or customize parameters yourself
 
      _The first parameter is to customize default settings and the second is to enable persistence_
 
@@ -88,12 +88,11 @@ Nightly.darkify();
 // To disable the dark mode
 Nightly.lightify();
 
-// Toggle between dark and light mode
+// To toggle between dark and light modes
 Nightly.toggle();
 ```
 
-- You can also pass callbacks to `darkify()`, `lightify()`.
-  And `toggle()` takes two callbacks (enableDarkModeCallback, enableLightModeCallback), for example:
+- You can also pass callbacks to `darkify()`, `lightify()`. And `toggle()` takes two callbacks (enableDarkModeCallback, enableLightModeCallback), for example:
 
 ```javascript
 var sayGoodMorning = function () {
@@ -144,12 +143,12 @@ In our [first example](./examples/plain-markup.html) we created a simple page as
 </div>
 ```
 
-Then The result was as the following:
+Then the result was as following:
 
 ![Before using Nightly.js](https://i.imgur.com/SFcqS3E.png 'Before using Nightly.js')
 
-We included `nightly.js` just before closing the `body` tag, we initiate Nightly object with no arguments,
-then we set an event listener to a button to execute our `toggle()` method, that switches between `darkify()` and `lightify()`
+We included `nightly.js` just before closing the `body` tag, initiated Nightly object with no arguments,
+then set an event listener to a button to execute our `toggle()` method, that switches between `darkify()` and `lightify()`
 
 ```html
 <script src="../src/nightly.js" charset="utf-8"></script>
@@ -164,7 +163,7 @@ then we set an event listener to a button to execute our `toggle()` method, that
 </body>
 ```
 
-The result was as the following:
+The result was as following:
 
 ![After using Nightly.js](https://i.imgur.com/uGHUsL0.png 'After using Nightly.js')
 
@@ -175,7 +174,10 @@ The result was as the following:
 - [ ] Improve [usage](#usage) section
 - [ ] Document and refactor the code
 - [ ] Continue writing tests
-- [ ] Write plugins for frameworks like Bootstrap - [ ] Bootstrap - [ ] Foundation - [ ] Materialize
+- [ ] Write plugins for frameworks like Bootstrap:
+    - [ ] Bootstrap
+    - [ ] Foundation
+    - [ ] Materialize
 
 ## License
 
