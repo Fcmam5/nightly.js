@@ -51,7 +51,7 @@ A zero dependency Javascript library for enabling dark/night mode in you UI.
 
      ```javascript
      var nightModeConfig = {
-       body: 'backgorund color', // Default: #282828
+       body: 'background color', // Default: #282828
        texts: 'texts color', // Default: #f5f5f5
        inputs: {
          color: 'text color inside inputs', // Default: #f5f5f5
